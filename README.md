@@ -69,7 +69,19 @@ For the sake of notation, we assume x_0 = 1 to allow matrix multiplication of th
 
 ![5](https://user-images.githubusercontent.com/54812742/137409200-8728e703-9658-4d84-b395-713ed67d6efb.PNG)
 
+In this case, the GD would be:
+
 ![66](https://user-images.githubusercontent.com/54812742/137410324-ed93ed69-194b-4851-96f5-1558a44ae2e4.PNG)
+
+which can be summarized as:
 
 ![77](https://user-images.githubusercontent.com/54812742/137410328-5fd4af85-1dc7-4294-9291-b6ff182a7dff.PNG)
 
+# Practical tips to speed up GD convergence
+
+* Feature scaling using mean normalization through replacing the features with the corresponding values obtained from:
+
+![mean norm](https://user-images.githubusercontent.com/54812742/137410775-d85f1bf5-f71f-422b-952f-b9cec96a02c1.PNG)
+
+* Making sure the GD works well through monitoring cost function vs. number of iterations (cost function should decrease in every single iteration), in this case we need to make sure that the size of learning rate is not too small or too big
+* We need to combine multiple features into one, if possible
