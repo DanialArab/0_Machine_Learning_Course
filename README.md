@@ -29,22 +29,47 @@ In the following, a brief explanation for each problem has been presented:
 
 # 1- Linear Regression 
 
-Linear regression problems can be either univariate (one variable) or multivariate problems. In either case, we define a hypothesis function, called y_hat or h(theta), to make a prediction. We can measure the accuracy of our prediction using a cost function. One form of the cost function is squared error function:
+Linear regression problems can be either univariate (one variable) or multivariate problems. In either case, we define a hypothesis function, called y_hat or h(theta), to make a prediction. We can measure the accuracy of our prediction using a cost function. One form of the cost function is mean squared error function:
 
-![cost_func_mean_sq_error](https://user-images.githubusercontent.com/54812742/137399110-7c3462a8-76c8-4065-8d14-d806f8d00a1d.PNG)
+![1](https://user-images.githubusercontent.com/54812742/137403944-02c95480-f8f3-40ae-b626-042c43f1d3b0.PNG)
 
 where m refers to the number of training examples in a dataset, thetas are model parameters, and n is number of features/independant variables (in the above formula which is for univariate linear regression n is equal to 1). We use different optimization algorithms such as gradient descent to minimize the cost function, which is the difference between our prediction and the right answers. 
 
 # Gradient Descent 
 Gradient descent (GD) is a general useful optimization algorithm not on ly used in linear regression but also in many ML problems. The definition of GD is as follows:
 
-![GD definition](https://user-images.githubusercontent.com/54812742/137400383-9814feab-5627-43a2-9133-eea9b22a5019.PNG)
+![2](https://user-images.githubusercontent.com/54812742/137404024-d79226fe-5779-4bf7-9f16-d6973318b739.PNG)
 
 where alpha is learning rate, denoting the size of the step we are taking to reach the local optima, and the derivate term indicates the direction. 
 Very important point is that the update should be performed **SIMULTANEOUSLY**, as shown in the following:
 
 ![Simultaneous update](https://user-images.githubusercontent.com/54812742/137401027-6680d2f8-534d-49b1-93d4-c8fff94ff7fe.PNG)
 
+Some useful points:
+* Batch GD is when an algorithm looks at all of the examples in the **entire** training set on every step.
+* As we approach a local minimum, GD automatically takes smaller steps and so there is no need to decrease learning rate over time
+* Too small learning rate may lead to a too slow GD
+* Too large learning rate may make GD to overshootthe minimum. It may fail to converge or even diverge
 
+# GD for Univariate linear regression
+In univariate linear regression, n is equal to 1 and we only have one independent variable (x) and so our model parameters are theta_0 (the intercept) and theta_1 (the slope). In this case our hypothesis function would be h_theta(x) = theta_0 + theta_1 * x. If we plug in the mean squared error function (equation 1) into equation 2, we can obtain the GD formula specifically for univariate linear regression:
 
+![11](https://user-images.githubusercontent.com/54812742/137406475-600c0784-c016-4a69-b1c1-57e0a015a492.PNG)
+
+# GD for Multivariate linear regression
+The followings are some useful notations:
+
+![notation](https://user-images.githubusercontent.com/54812742/137408353-8c1dfa30-dc86-4fb4-b6aa-6731ebc29a3c.PNG)
+
+In this case, our hypothesis function is as follows:
+
+![4](https://user-images.githubusercontent.com/54812742/137408629-27b5adce-2b1e-496c-b09a-7bd103843fc7.PNG)
+
+For the sake of notation, we assume x_0 = 1 to allow matrix multiplication of theta and X. Then the multivariate hypothesis function, equation 4, can be represented using the definition of matrix multiplication:  
+
+![5](https://user-images.githubusercontent.com/54812742/137409200-8728e703-9658-4d84-b395-713ed67d6efb.PNG)
+
+![66](https://user-images.githubusercontent.com/54812742/137410324-ed93ed69-194b-4851-96f5-1558a44ae2e4.PNG)
+
+![77](https://user-images.githubusercontent.com/54812742/137410328-5fd4af85-1dc7-4294-9291-b6ff182a7dff.PNG)
 
