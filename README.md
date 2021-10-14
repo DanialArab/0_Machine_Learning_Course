@@ -1,6 +1,6 @@
 # Machine-Learning-Course----Taught-by-Andrew-Ng
 
-This repository contains my learnings along with my solutions to the programming assignments of the Machine Learning class. Please respect the Coursera Honor Code in terms of assignment submissions. As a gentle reminder the Honor Code of the Machine Learning course is as follows: 
+This repository contains my learnings along with my solutions to the programming assignments (using OCTAVE) of the Machine Learning class. Please respect the Coursera Honor Code in terms of assignment submissions. As a gentle reminder the Honor Code of the Machine Learning course is as follows: 
 
 # Machine Learning Honor Code
 We strongly encourage students to form study groups, and discuss the lecture videos (including in-video questions). We also encourage you to get together with friends to watch the videos together as a group. However, the answers that you submit for the review questions should be your own work. For the programming exercises, you are welcome to discuss them with other students, discuss specific algorithms, properties of algorithms, etc.; we ask only that you not look at any source code written by a different student, nor show your solution code to other students.
@@ -41,7 +41,7 @@ Gradient descent (GD) is a general useful optimization algorithm not on ly used 
 ![GD definition](https://user-images.githubusercontent.com/54812742/137400383-9814feab-5627-43a2-9133-eea9b22a5019.PNG)
 
 where alpha is learning rate, denoting the size of the step we are taking to reach the local optima, and the derivate term indicates the direction. 
-Very important point is that the update should be performed **SIMULTANEOUSLY**, shown below:
+Very important point is that the update should be performed **SIMULTANEOUSLY**, as shown in the following:
 
 ![Simultaneous update](https://user-images.githubusercontent.com/54812742/137401027-6680d2f8-534d-49b1-93d4-c8fff94ff7fe.PNG)
 
