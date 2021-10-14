@@ -1,4 +1,4 @@
-# Machine-Learning-Course----Taught-by-Andrew-Ng
+# Machine Learning Course -- Taught by Prof. Andrew Ng
 
 This repository contains my learnings along with my solutions to the programming assignments (using OCTAVE) of the Machine Learning class. Please respect the Coursera Honor Code in terms of assignment submissions. As a gentle reminder the Honor Code of the Machine Learning course is as follows: 
 
