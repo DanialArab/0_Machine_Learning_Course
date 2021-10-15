@@ -49,7 +49,7 @@ Some useful points:
 * Batch GD is when an algorithm looks at all of the examples in the **entire** training set on every step.
 * As we approach a local minimum, GD automatically takes smaller steps and so there is no need to decrease learning rate over time
 * Too small learning rate may lead to a too slow GD
-* Too large learning rate may make GD to overshootthe minimum. It may fail to converge or even diverge
+* Too large learning rate may make GD to overshoot the minimum. It may fail to converge or even diverge
 
 # GD for Univariate linear regression
 In univariate linear regression, n is equal to 1 and we only have one independent variable (x) and so our model parameters are theta_0 (the intercept) and theta_1 (the slope). In this case our hypothesis function would be h_theta(x) = theta_0 + theta_1 * x. If we plug in the mean squared error function (equation 1) into equation 2, we can obtain the GD formula specifically for univariate linear regression:
