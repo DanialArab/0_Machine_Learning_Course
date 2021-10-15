@@ -36,7 +36,7 @@ Linear regression problems can be either univariate (one variable) or multivaria
 where m refers to the number of training examples in a dataset, thetas are model parameters, and n is number of features/independant variables (in the above formula which is for univariate linear regression n is equal to 1). We use different optimization algorithms such as gradient descent to minimize the cost function, which is the difference between our prediction and the right answers. 
 
 # Gradient Descent 
-Gradient descent (GD) is a general useful optimization algorithm not on ly used in linear regression but also in many ML problems. The definition of GD is as follows:
+Gradient descent (GD) is a general useful optimization algorithm not only used in linear regression but also in many ML problems. The definition of GD is as follows:
 
 ![2](https://user-images.githubusercontent.com/54812742/137404024-d79226fe-5779-4bf7-9f16-d6973318b739.PNG)
 
