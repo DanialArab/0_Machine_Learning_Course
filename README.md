@@ -17,7 +17,7 @@ There are three main types of ML algorithms:
 
 # Supervised learning algorithms:
 In SL algorithms we have a dataset with right answers (i.e., we have an idea of a relationship between the input and output). These algorithms are categorized as:
-* Regression, wehre we try to map the inputs to some **CONTINUOUS / REAL-VALUED** outputs 
+* Regression, wehre we try to map the inputs to some **CONTINEOUS / REAL-VALUED** outputs 
 * Classification, wehre we try to map the inputs to  **DISCRETE-VALUED** outputs   
  
  # Unsupervised learning algorithms:
