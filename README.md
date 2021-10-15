@@ -85,3 +85,21 @@ which can be summarized as:
 
 * Making sure the GD works well through monitoring cost function vs. number of iterations (cost function should decrease in every single iteration), in this case we need to make sure that the size of learning rate is not too small or too big
 * We need to combine multiple features into one, if possible
+# Normal equation
+Normal equation (NE) gives us much better way to **analytically** solve for the optimal values of theta in linear regression problem. However, in more sophisticated learning algorithms like classification algorithms such as logistic regression algorithms NE does not work and we need to resort to GD. However, in linear regression with not too many number of features (less than 10000) NE is an efficient alternative to GD. 
+
+First we construct a feature matrix (also called design matrix) which includes all the features from the training dataset plus a column of one, corresponding to x_0, also we construct a vector containing all the outputs. X would be m by (n+1) matrix and y would be m dimensional vector, as shown below. 
+
+![desogn matrix](https://user-images.githubusercontent.com/54812742/137521844-8e6289b0-2fed-45be-82b2-b149965d3bd9.PNG)
+
+Optimal theta can be calculated through the following equation:
+
+![88](https://user-images.githubusercontent.com/54812742/137523767-418ca7d3-3d29-4e25-ac1e-ca5139d4e61f.PNG)
+
+The following table summarizes the advantage and disadvantages of GD vs. NE. 
+
+![table](https://user-images.githubusercontent.com/54812742/137523902-55d5ca9d-5ece-489d-b732-fdbe82a46bc7.PNG)
+
+If n is 10000 we start thinking of using GD, for the larger values we go for GD because normal equation could be computationally very expensive due to calculating the inverse. Another advantage of NE is that we do not need to do feature scaling.
+
+
