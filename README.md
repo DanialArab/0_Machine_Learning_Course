@@ -102,5 +102,94 @@ The following table summarizes the advantage and disadvantages of GD vs. NE.
 
 If n is 10000 we start thinking of using GD, for the larger values we go for GD because normal equation could be computationally very expensive due to calculating the inverse. Another advantage of NE is that we do not need to do feature scaling.
 
+# 2 - Logistic regression for classification problem:
+Classification can be either binary or multi class classification.
+The property of the logistic regression algorithm is that outputs or the predictions of the algorithm are always between zero and one and do not become either bigger than one or less than zero. 
+The name of the algorithm is not intuitive because it is named logistic regression but it is used in classification. 
+Logistic function (or sigmoid function) is the hypothesis function of the logistic regression algorithm, which is as follows:
+
+![1](https://user-images.githubusercontent.com/54812742/137561885-0475be42-c99b-4939-b21c-302ef9dd0837.PNG)
+
+The sigmoid function maps any real number to the (0, 1) interval, making it useful for transforming an arbitrary-valued function into a function better suited for classification. h_theta(x) will give us the probability that our output is 1:
+
+![2](https://user-images.githubusercontent.com/54812742/137561946-af6d5316-f1e4-4fee-835b-c3bf4511da46.PNG)
+
+Decision boundary:
+In order to get our discrete 0 or 1 classification, we can translate the output of the hypothesis function as follows:
+
+![3](https://user-images.githubusercontent.com/54812742/137561973-3a6f7d3f-5f40-4051-b37e-39bdb5ed981f.PNG)
+
+The way our logistic function g behaves is that when its input is greater than or equal to zero, its output is greater than or equal to 0.5:
+
+![0](https://user-images.githubusercontent.com/54812742/137562031-14a39b9a-4fc5-4925-8f2d-527c94c5c2bc.PNG)
+
+![6](https://user-images.githubusercontent.com/54812742/137562040-7deba3ef-931e-42d5-b62a-a74382c0a61b.PNG)
+
+So if our input to g is theta_transpose*X then that means:
+
+![7](https://user-images.githubusercontent.com/54812742/137562067-7ae769af-3c7a-4a53-83f4-acbf0058da79.PNG)
+
+From these statements we can now say:
+
+![8](https://user-images.githubusercontent.com/54812742/137562090-d336ccd7-1aea-4da1-9b66-495a576fca1e.PNG)
+
+The decision boundary is the line that separates the area where y = 0 and where y = 1. It is created by our hypothesis function. The decision boundary is a property, not of the trading set, but of the hypothesis under the parameters.
+Nonlinear decision boundary
+The input to the sigmoid function g(z), i.e., theta_transpose*X, doesn't need to be linear, and could be a function that describes a circle or any shape to fit our data. 
+Logistic regression – Cost function/optimization objective
+We cannot use the same cost function that we use for linear regression, i.e., the squared error function, because the Logistic Function will cause the output to be wavy, causing many local optima. In other words, it will not be a convex function. Instead, our cost function for logistic regression looks like:
+
+![Capture2](https://user-images.githubusercontent.com/54812742/137562105-06a32bc6-1b2e-4ea8-a881-73b7e4076409.PNG)
+
+![10](https://user-images.githubusercontent.com/54812742/137562118-b9f770f1-aca9-405f-85f4-9e82e48eb249.PNG)
+
+If our correct answer 'y' is 0, then the cost function will be 0 if our hypothesis function also outputs 0. If our hypothesis approaches 1, then the cost function will approach infinity.
+If our correct answer 'y' is 1, then the cost function will be 0 if our hypothesis function outputs 1. If our hypothesis approaches 0, then the cost function will approach infinity.
+Writing the cost function in this way guarantees that J(θ) is convex for logistic regression. 
+This particular choice of cost function for logistic regression leads to a convex optimization problem. In this case, overall cost function J of theta will be convex and local optima free.
+We can compress our cost function's two conditional cases into one case:
+
+![11](https://user-images.githubusercontent.com/54812742/137562142-f83ef8a0-ed95-479c-86c8-3c5b6226e483.PNG)
+
+A **vectorized implementation** is:
+
+![12](https://user-images.githubusercontent.com/54812742/137562153-8a645e77-8c78-42f2-84bd-a518be43c4f5.PNG)
+
+the general form of gradient descent is:
+
+![13](https://user-images.githubusercontent.com/54812742/137562171-ea58dc3c-7b30-4ee9-8ce0-d72670dfe4e5.PNG)
+
+After applying derivative terms:
+
+![14](https://user-images.githubusercontent.com/54812742/137562190-876ee448-1b67-42ab-95ff-9ab21716c437.PNG)
+
+which is identical to the algorithm used in linear regression. The main difference is in h_theta(x), which was theta_transpose(x) in linear regression but is equal to sigmoid function, having theta_transpose(x) for z, in logistic regression. So, they are not actually similar. We still have to **simultaneously** update all values in theta.
+
+A **vectorized implementation** is:
+
+![15](https://user-images.githubusercontent.com/54812742/137562207-1123cfa1-1f4e-48aa-9a84-53b88abdbe13.PNG)
+
+The idea of feature scaling also can speed up applying GD for logistic regression.
+# Advanced Optimization Algorithms 
+*"Conjugate gradient"
+*"BFGS"
+*"L-BFGS" 
+These are more sophisticated, faster ways to optimize θ that can be used instead of gradient descent. The advantage of these algorithms is that there is no need to manually pick a learning rate value, because they do have an inner loop which takes care of it. Also, these algorithms are often faster than GD.  Their disadvantage is that they are more complex. 
+All of these advanced algorithms are already written in libraries. We only need to provide code for J(theta) and the derivative term of J(theta)with respect to theta_j, as follows: 
+function [jval, gradient] = CostFunction (theta)
+   jval = [… code to compute J(theta) …];
+   gradient  = [ .. code to compute derivative of J (theta) …];
+end
+and then we can use octave's "fminunc()" optimization algorithm along with the "optimset()" function that creates an object containing the options we want to send to "fminunc()":
+options = optimset('GradObj', 'on', 'MaxIter', 100);
+initialTheta = zeros(2,1);
+   [optTheta, functionVal, exitFlag] = fminunc(@costFunction, initialTheta, options);
+That is we give to the function "fminunc()" our cost function, our initial vector of theta values, and the "options" object that we created beforehand.
+
+
+
+
+
+
 
 
