@@ -103,3 +103,4 @@ The following table summarizes the advantage and disadvantages of GD vs. NE.
 If n is 10000 we start thinking of using GD, for the larger values we go for GD because normal equation could be computationally very expensive due to calculating the inverse. Another advantage of NE is that we do not need to do feature scaling.
 
 
+
