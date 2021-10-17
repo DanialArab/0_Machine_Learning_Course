@@ -2,12 +2,7 @@
 
 This repository contains my learnings along with my solutions to the programming assignments (using OCTAVE) of the Machine Learning course taught by Prof. Andrew Ng. Please respect the Coursera Honor Code in terms of assignment submissions. As a gentle reminder the Honor Code of the Machine Learning course is as follows: 
 
-# Table of contents 
-## Machine Learning Honor Code
-
-
-
-# Machine Learning Honor Code
+# Machine Learning Class Honor Code
 We strongly encourage students to form study groups, and discuss the lecture videos (including in-video questions). We also encourage you to get together with friends to watch the videos together as a group. However, the answers that you submit for the review questions should be your own work. For the programming exercises, you are welcome to discuss them with other students, discuss specific algorithms, properties of algorithms, etc.; we ask only that you not look at any source code written by a different student, nor show your solution code to other students.
 
 # A quick introduction:
@@ -207,6 +202,92 @@ initialTheta = zeros(2,1);
    
 That is we give to the function "fminunc()" our cost function, our initial vector of theta values, and the "options" object that we created beforehand.
 
+# Multiclass Classification
+
+## One-vs-all (or one-vs-rest) algorithm 
+
+In classification of data when we have more than two categories, instead of y = {0,1} we will expand our definition so that y = {0,1...n}.
+Since y = {0,1...n}, we divide our problem into n+1 (+1 because the index starts at 0) binary classification problems; in each one, we predict the probability that 'y' is a member of one of our classes.
+
+We are basically choosing one class and then lumping all the others into a single second class. We do this repeatedly, applying binary logistic regression to each case, and then use the hypothesis that returned the highest value as our prediction.
+
+![16](https://user-images.githubusercontent.com/54812742/137644883-686f658a-9600-4f74-bb3b-f82ad5e69dd0.PNG)
+
+# Overfitting probem and its solution called regularization
+
+Underfitting, or high bias, is when the form of our hypothesis function h maps poorly to the trend of the data. It is usually caused by a function that is too simple or uses too few features. At the other extreme, overfitting, or high variance, is caused by a hypothesis function that fits the available data but does not generalize well to predict new data. It is usually caused by a complicated function that creates a lot of unnecessary curves and angles unrelated to the data.
+This terminology is applied to both linear and logistic regression. There are two main options to address the issue of overfitting:
+
+1) Reduce the number of features (the draw back is we lose some information which may be useful):
+* Manually select which features to keep.
+
+* Use a model selection algorithm (studied later in the course), which automatically determines which features need to be kept and which ones need to be throw out 
+2) Regularization
+
+* Keep all the features, but reduce the magnitude/values of parameters theta_j
+*
+* Regularization works well when we have a lot of slightly usseful features that we don’t want to throw them out
+
+![17](https://user-images.githubusercontent.com/54812742/137644922-b7bccc45-b524-4b85-bf61-cd150b5c2a04.PNG)
+
+![18](https://user-images.githubusercontent.com/54812742/137644927-37679853-8813-4be7-8719-b4d196bb18e9.PNG)
+
+## How to apply regularization and the idea of regularized cost function
+
+## How to apply regularization and the idea of regularized cost function – Linear regression
+
+We can apply regularization to both linear regression and logistic regression. First, let’s work on linear regression. For linear regression problem, we can regularize all of our theta parameters in a single summation as:
+
+![20](https://user-images.githubusercontent.com/54812742/137644959-4ac58fdc-c9ac-4e56-8115-388ed39eac35.PNG)
+
+We do not penalize theta_0 and that is why we have j starting from 1 in the second summation term.
+Lambda is regularization parameter, which controls a trade off between two different goals: the first goal, captured by the first term in the regularized cost function, is that how well we can fit the training set and the second goal is keeping the parameters small and therefore keeping the hypothesis function relatively simple to prevent overfitting 
+If we set lambda to a too larger value, algorithm results in underfitting (fails to even fit the training set) because in this case we penalize all the parameters very heavily, which is like we end of having a hypothesis of only equal to theta_0 leading to underfitting problem. So, a good choice of regularization parameter is required. The idea of how to automatically choose lambda will be discussed when discussing the model selection algorithm. 
+
+# GD to be applied on regularized cost function of linear regression 
+
+![21](https://user-images.githubusercontent.com/54812742/137644978-5e20c3de-c313-4132-a8ca-8a1099855772.PNG)
+
+Which can be written as:
+
+![22](https://user-images.githubusercontent.com/54812742/137644985-e784c4f5-cda7-4ed3-a0e7-3fd8f5866ba9.PNG)
+
+The term (1 – alpha*lambda/m) in the above equation will always be less than 1. Intuitively you can see it as reducing the value of theta_j by some amount on every update. The second term is now exactly the same as it was before.
+
+# Normal equation to be applied on regularized cost function of linear regression
+
+The modified form of the equation would be:  
+
+![23](https://user-images.githubusercontent.com/54812742/137644996-478dc2a4-94e0-465c-9c26-e2c3eaed8595.PNG)
+
+L is a matrix with 0 at the top left and 1's down the diagonal, with 0's everywhere else. It should have dimension (n+1)×(n+1). Intuitively, this is the identity matrix (though we are not including x_0), multiplied with a single real number λ.
+Recall that if m < n, then X_transpose * X is non-invertible. However, when we add the term λ⋅L, then X_transpose * X + λ⋅L becomes invertible.
+
+## How to apply regularization and the idea of regularized cost function – Logistic regression
+
+We can regularize logistic regression in a similar way that we regularize linear regression. As a result, we can avoid overfitting. Both GD and the advanced optimization techniques will be discussed:
+
+GD:
+
+Our cost function for logistic regression (non – regularized version) is as follows:
+
+![24](https://user-images.githubusercontent.com/54812742/137645013-a48f8387-03ba-47e4-bc3c-68e017759ba8.PNG)
+
+We can regularize this equation by adding a term to the end:
+
+![25](https://user-images.githubusercontent.com/54812742/137645036-5cb0a169-0b0a-49ec-8267-58e01c0d06a8.PNG)
+
+GD:
+
+![26](https://user-images.githubusercontent.com/54812742/137645047-6b9aafae-e18e-43c4-9d94-b4a341da0c04.PNG)
+
+Again this equation seems identical to the one for linear regression, but the difference is in h_theta(x) which is equal to sigmoid function for logistic regression. 
+
+# For the advanced optimization:
+
+It is the same as before, I just need to modify Jval and gradient terms to include the regularization term:
+
+![27](https://user-images.githubusercontent.com/54812742/137645066-0467e123-52f5-494e-bc47-c4ee8f4b5e74.PNG)
 
 
 
