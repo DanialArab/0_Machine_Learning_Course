@@ -202,6 +202,8 @@ initialTheta = zeros(2,1);
    
 That is we give to the function "fminunc()" our cost function, our initial vector of theta values, and the "options" object that we created beforehand.
 
+fminunc = function minimization unconstrained. Constraints in optimization often refer to constraints on the parameters, for example, constraints that bound the possible values theta can take (e.g., theta <= 1). Logistic regression does not have such constraints since theta is allowed to take any real value.
+
 # Multiclass Classification
 
 ## One-vs-all (or one-vs-rest) algorithm 
