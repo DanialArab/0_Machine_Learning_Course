@@ -12,12 +12,13 @@ This repository contains my learnings (documented through personal and course no
     1. [Supervised learning algorithms](#4)
     2. [Unsupervised learning algorithms](#5)
 4. [Note on the programming assignments](#6)
-5. [1- Linear Regression](#7)
+5. [Linear Regression](#7)
 6. [Gradient Descent](#8)
     1. [GD for univariate linear regression](#9)
     2. [GD for multivariate linear regression](#10)
 7. [Practical tips to speed up GD convergence](#11)
 8. [Normal equation](#12)
+9. [Logistic regression for classification problem](#13)
 
 
 
@@ -57,7 +58,7 @@ In USL algorithms, the dataset does not have any label and we just try to find a
 In the following, first a brief discussion/explanation on the topic is presented to clarify the algorithm. The corresponding codes are presented separately.
 
 <a name="7"></a>
-# 1- Linear Regression 
+# Linear Regression 
 
 Linear regression problems can be either univariate (one variable) or multivariate problems. In either case, we define a hypothesis function, called y_hat or h(theta), to make a prediction. We can measure the accuracy of our prediction using a cost function. One form of the cost function is mean squared error function:
 
@@ -138,7 +139,8 @@ The following table summarizes the advantage and disadvantages of GD vs. NE.
 
 If n is 10000 we start thinking of using GD, for the larger values we go for GD because normal equation could be computationally very expensive due to calculating the inverse. Another advantage of NE is that we do not need to do feature scaling.
 
-# 2 - Logistic regression for classification problem
+<a name="13"></a>
+# Logistic regression for classification problem
 Classification can be either binary or multi class classification.
 The property of the logistic regression algorithm is that outputs or the predictions of the algorithm are always between zero and one and do not become either bigger than one or less than zero. 
 The name of the algorithm is not intuitive because it is named logistic regression but it is used in classification. 
