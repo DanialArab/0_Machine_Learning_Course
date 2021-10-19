@@ -1,6 +1,6 @@
 @author: Danial Arab
 """
-
+# The same data was used to generate a logistic regression model but with Python using SKlearn library 
 import pandas as pd
 
 df = pd.read_csv ('ex2data1.txt')
