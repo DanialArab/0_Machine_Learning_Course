@@ -288,7 +288,7 @@ This terminology is applied to both linear and logistic regression. There are tw
 
 * Keep all the features, but reduce the magnitude/values of parameters theta_j
 
-* Regularization works well when we have a lot of slightly usseful features that we don’t want to throw them out
+* Regularization works well when we have a lot of slightly useful features that we don’t want to throw them out
 
 ![17](https://user-images.githubusercontent.com/54812742/137644922-b7bccc45-b524-4b85-bf61-cd150b5c2a04.PNG)
 
