@@ -1,76 +1,74 @@
-%% Machine Learning Online Class - Exercise 3 | Part 2: Neural Networks
 
-%  Instructions
-%  ------------
-% 
-%  This file contains code that helps you get started on the
-%  linear exercise. You will need to complete the following functions 
-%  in this exericse:
-%
-%     lrCostFunction.m (logistic regression cost function)
-%     oneVsAll.m
-%     predictOneVsAll.m
-%     predict.m
-%
-%  For this exercise, you will not need to change any code in this file,
-%  or any other files other than those mentioned above.
-%
-
-%% Initialization
 clear ; close all; clc
 
-%% Setup the parameters you will use for this exercise
-input_layer_size  = 400;  % 20x20 Input Images of Digits
-hidden_layer_size = 25;   % 25 hidden units
-num_labels = 10;          % 10 labels, from 1 to 10   
-                          % (note that we have mapped "0" to label 10)
-
-%% =========== Part 1: Loading and Visualizing Data =============
-%  We start the exercise by first loading and visualizing the dataset. 
-%  You will be working with a dataset that contains handwritten digits.
-%
-
-% Load Training Data
-fprintf('Loading and Visualizing Data ...\n')
+input_layer_size  = 400; 
+hidden_layer_size = 25;   
+num_labels = 10;          
+                         
+% Step_1: loading and visualizing the data
 
 load('ex3data1.mat');
 m = size(X, 1);
 
-% Randomly select 100 data points to display
+function [h, display_array] = displayData(X, example_width)
+
+if ~exist('example_width', 'var') || isempty(example_width) 
+	example_width = round(sqrt(size(X, 2)));
+end
+
+colormap(gray);
+
+[m n] = size(X);
+example_height = (n / example_width);
+
+display_rows = floor(sqrt(m));
+display_cols = ceil(m / display_rows);
+
+pad = 1;
+
+display_array = - ones(pad + display_rows * (example_height + pad), ...
+                       pad + display_cols * (example_width + pad));
+
+curr_ex = 1;
+for j = 1:display_rows
+	for i = 1:display_cols
+		if curr_ex > m, 
+			break; 
+		end
+		max_val = max(abs(X(curr_ex, :)));
+		display_array(pad + (j - 1) * (example_height + pad) + (1:example_height), ...
+		              pad + (i - 1) * (example_width + pad) + (1:example_width)) = ...
+						reshape(X(curr_ex, :), example_height, example_width) / max_val;
+		curr_ex = curr_ex + 1;
+	end
+	if curr_ex > m, 
+		break; 
+	end
+end
+
+h = imagesc(display_array, [-1 1]);
+
+axis image off
+
+drawnow;
+
+end
+
 sel = randperm(size(X, 1));
 sel = sel(1:100);
-
 displayData(X(sel, :));
 
-fprintf('Program paused. Press enter to continue.\n');
-pause;
+% Step_2: Loading the weights 
 
-%% ================ Part 2: Loading Pameters ================
-% In this part of the exercise, we load some pre-initialized 
-% neural network parameters.
-
-fprintf('\nLoading Saved Neural Network Parameters ...\n')
-
-% Load the weights into variables Theta1 and Theta2
 load('ex3weights.mat');
 
-%% ================= Part 3: Implement Predict =================
-%  After training the neural network, we would like to use it to predict
-%  the labels. You will now implement the "predict" function to use the
-%  neural network to predict the labels of the training set. This lets
-%  you compute the training set accuracy.
+% Step_3: make a prediction
 
 pred = predict(Theta1, Theta2, X);
 
 fprintf('\nTraining Set Accuracy: %f\n', mean(double(pred == y)) * 100);
 
-fprintf('Program paused. Press enter to continue.\n');
-pause;
 
-%  To give you an idea of the network's output, you can also run
-%  through the examples one at the a time to see what it is predicting.
-
-%  Randomly permute examples
 rp = randperm(m);
 
 for i = 1:m
