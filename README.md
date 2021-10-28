@@ -33,6 +33,11 @@ This repository contains my learnings (documented through personal and course no
           2. [How to apply regularization and the idea of regularized cost function – Logistic regression](#25) 
               1. [GD to be applied on regularized cost function of logistic regression](#26)
               2. [Advanced optimization algorithms](#27)
+            
+10. [Neural Networks](#28)
+    1. [Why Neural Networks](#29)
+    2. [Model representation](#30)
+    
               
 
 
@@ -356,9 +361,43 @@ It is the same as before, it is just needed to modify Jval and gradient terms to
 
 ![27](https://user-images.githubusercontent.com/54812742/137645066-0467e123-52f5-494e-bc47-c4ee8f4b5e74.PNG)
 
+<a name="28"></a>
+# Neural Networks
 
+<a name="29"></a>
+## Why neural networks: 
 
+Since we have logistic regression and linear regression, why do we need neural networks?
+In a supervised learning classification problem with the following training dataset, we can apply logistic regression with a lot of nonlinear features. In this case, through having enough polynomial terms we can end up with a hypothesis that can separate positive and negative examples. 
 
+![1](https://user-images.githubusercontent.com/54812742/139180480-b630dd67-76a7-4787-8370-92842ee55789.PNG)
 
+This technique works well if we only have two features x_1 and x_2. What about we had much more features? Let’s say we have 100 features, and we want to include all the quadratic terms that is second order or polynomial terms, doing so we end up having a lot of features, around 5000, which is very expensive (roughly around n^2/2, where n is the number of features we originally had). We may include only a subset of these features, in this case, the subset features may not be enough and we cannot fit the data like the magenta line in the above figure. Therefore, simple logistic regression algorithm with adding more quadratic or cubic features is not a good idea to learn complex nonlinear hypothesis when the original number of features is large. In these cases, neural networks come to play a great role. 
 
+<a name="30"></a>
+## Model representation
+
+How we represent our hypothesis when using neural networks? 
+
+A neuron/node is a computational unit that gets a number of inputs and does some computation and outputs to other nodes in the network (below figure).
+
+![2](https://user-images.githubusercontent.com/54812742/139182544-5396f2f2-0a97-46dc-8454-2377d36b9b6b.PNG)
+
+This simple diagram represents a single neuron, while a neural network is just a group of these different neurons strong together (below figure). 
+
+![neural network representation from NN class](https://user-images.githubusercontent.com/54812742/139187209-18344c7a-33fb-4475-9a17-2108c63538a3.PNG)
+
+Usually, we do not count the input layer and so we call the above network a 2 layer neural network.
+
+## Computing a Neural Network's Output
+
+The logistic regression really represents two steps of computation. First z is computed and then, the activation is computed as a sigmoid function of z (below figure). So, a neural network just does this a lot more times.
+
+![nn](https://user-images.githubusercontent.com/54812742/139187269-f7c284d4-c30b-4802-be6f-158d4d436d78.PNG)
+
+Some notations:
+
+![5](https://user-images.githubusercontent.com/54812742/139183033-347d648a-0579-401a-9c83-3518b4dcd2a4.PNG)
+
+The activation means the value that's computed by and as output by a specific neuron.
 
