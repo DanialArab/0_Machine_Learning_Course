@@ -38,6 +38,8 @@ This repository contains my learnings (documented through personal and course no
     1. [Why Neural Networks](#29)
     2. [Model representation](#30)
     3. [Computing a Neural Network's Output](#31) 
+    4. [Neural network cost function](#32) 
+    5. [Backpropagation Algorithm to minimize neural network cost function](#33) 
     
               
 
@@ -396,5 +398,27 @@ Usually, we do not count the input layer and so we call the above network a 2 la
 The logistic regression really represents two steps of computation. First z is computed and then, the activation is computed as a sigmoid function of z (below figure). The activation is the value that's computed by and as output by a specific neuron. So, a neural network just does this a lot more times.
 
 ![nn](https://user-images.githubusercontent.com/54812742/139187269-f7c284d4-c30b-4802-be6f-158d4d436d78.PNG)
+
+<a name="32"></a>
+# Neural network cost function 
+
+Neural networks are one of the most powerful learning algorithms. The cost function for a neural network, for a classification application, is a generalized version of the logistic regression cost function:
+
+![2](https://user-images.githubusercontent.com/54812742/139336809-b330dc57-e129-4664-b79d-4921dbfaf114.PNG)
+
+where L , s_l, and K are the total number of layers in the network, number of units in layer l (not counting bias unit), and the number of output units/classes, respectively.
+
+Some notes:
+
+* the double sum simply adds up the logistic regression costs calculated for each cell in the output layer
+* the triple sum simply adds up the squares of all the individual Θs in the entire network.
+* the i in the triple sum does **not** refer to training example i
+
+<a name="33"></a>
+# Backpropagation Algorithm to minimize neural network cost function
+
+"Backpropagation" is neural-network terminology for minimizing our cost function, just like what we were doing with gradient descent in logistic and linear regression. That is, we want to minimize our cost function J using an optimal set of parameters in theta. 
+
+
 
 
