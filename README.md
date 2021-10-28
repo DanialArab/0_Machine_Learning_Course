@@ -37,6 +37,7 @@ This repository contains my learnings (documented through personal and course no
 10. [Neural Networks](#28)
     1. [Why Neural Networks](#29)
     2. [Model representation](#30)
+    3. [Computing a Neural Network's Output](#31) 
     
               
 
@@ -389,6 +390,7 @@ This simple diagram represents a single neuron, while a neural network is just a
 
 Usually, we do not count the input layer and so we call the above network a 2 layer neural network.
 
+<a name="31"></a>
 ## Computing a Neural Network's Output
 
 The logistic regression really represents two steps of computation. First z is computed and then, the activation is computed as a sigmoid function of z (below figure). So, a neural network just does this a lot more times.
