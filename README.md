@@ -397,9 +397,5 @@ The logistic regression really represents two steps of computation. First z is c
 
 ![nn](https://user-images.githubusercontent.com/54812742/139187269-f7c284d4-c30b-4802-be6f-158d4d436d78.PNG)
 
-Some notations:
-
-![5](https://user-images.githubusercontent.com/54812742/139183033-347d648a-0579-401a-9c83-3518b4dcd2a4.PNG)
-
 The activation means the value that's computed by and as output by a specific neuron.
 
