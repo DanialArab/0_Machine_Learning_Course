@@ -39,7 +39,9 @@ This repository contains my learnings (documented through personal and course no
     2. [Model representation](#30)
     3. [Computing a Neural Network's Output](#31) 
     4. [Neural network cost function](#32) 
-    5. [Backpropagation Algorithm to minimize neural network cost function](#33) 
+    5. [Backpropagation Algorithm to minimize neural network cost function](#33)
+    6. [Numerical gradient checking](#34)  
+    7. [Random Initialization](#35)  
     
               
 
@@ -419,6 +421,28 @@ Some notes:
 
 "Backpropagation" is neural-network terminology for minimizing our cost function, just like what we were doing with gradient descent in logistic and linear regression. That is, we want to minimize our cost function J using an optimal set of parameters in theta. 
 
+<a name="34"></a>
+# Numerical gradient checking
+
+There is a chance that although your neural network is working and the cost function is decreasing in every iteration, but there is the high-level errors associated with your neural network. To check this, we need to do the numerical gradient checking:
+The approximate to the derivative of our cost function would be with:
+
+![4](https://user-images.githubusercontent.com/54812742/139351691-a661d815-399a-4d26-9172-f5b8bde4637a.PNG)
+
+With multiple theta matrices, we can approximate the derivative with respect to theta_j as follows:
+
+![5](https://user-images.githubusercontent.com/54812742/139351714-f5fa428c-397f-4844-a7b7-43d71e46cd5a.PNG)
+
+A small value for epsilon such as 0.0001, guarantees that the math works out properly. If the value for epsilon is too small, we can end up with numerical problems. Hence, we are only adding or subtracting epsilon to the theta_j matrix.
+
+![3](https://user-images.githubusercontent.com/54812742/139351741-c27657d1-aab3-4e44-bd9f-07538667043b.PNG)
+
+<a name="35"></a>
+# Random Initialization 
+
+Whereas the zero-initialization worked okay when we were using logistic regression, initializing all of the parameters to zero actually **does not** work when training a neural network. Initializing all theta weights to zero does not work with neural networks. When we backpropagate, all nodes will update to the same value repeatedly (below figure). Instead, we can randomly initialize our weights for our theta matrices.
+
+![6](https://user-images.githubusercontent.com/54812742/139351792-8e3af0ff-911b-446d-bfe0-bdedce93b422.PNG)
 
 
 
