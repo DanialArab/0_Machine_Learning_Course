@@ -23,7 +23,7 @@ ylabel('Microchip Test 2')
 legend('y=1', 'y=0'); 
 hold off; 
 
-% Step_3: Map featuring
+% Step_3: Featuring Mapping 
 
 function out = mapFeature(X1, X2)
 degree = 6;
