@@ -393,9 +393,8 @@ Usually, we do not count the input layer and so we call the above network a 2 la
 <a name="31"></a>
 ## Computing a Neural Network's Output
 
-The logistic regression really represents two steps of computation. First z is computed and then, the activation is computed as a sigmoid function of z (below figure). So, a neural network just does this a lot more times.
+The logistic regression really represents two steps of computation. First z is computed and then, the activation is computed as a sigmoid function of z (below figure). The activation is the value that's computed by and as output by a specific neuron. So, a neural network just does this a lot more times.
 
 ![nn](https://user-images.githubusercontent.com/54812742/139187269-f7c284d4-c30b-4802-be6f-158d4d436d78.PNG)
 
-The activation means the value that's computed by and as output by a specific neuron.
 
